@@ -16,6 +16,8 @@ export default {
   margin: 0;
   box-sizing: border-box;
   font-family: 'Roboto Mono', monospace;
+  color: rgb(77, 77, 77);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 #app {
