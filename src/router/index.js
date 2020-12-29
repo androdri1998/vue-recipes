@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import DetailRecipe from '@/pages/DetailRecipe/DetailRecipe';
-import FavoriteRecipes from '@/pages/FavoriteRecipes/FavoriteRecipes';
-import Home from '@/pages/Home/Home';
+import DetailRecipe from '@/pages/DetailRecipe';
+import FavoriteRecipes from '@/pages/FavoriteRecipes';
+import Home from '@/pages/Home';
 
 Vue.use(Router);
 
