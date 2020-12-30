@@ -13,35 +13,26 @@
   </main>
 </template>
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 import Header from '@/components/Header';
 import RecipeCard from '@/components/RecipeCard';
 
 export default {
   name: 'Home',
+  computed: { ...mapGetters(['recipes']) },
+  methods: {
+    ...mapActions(['getRecipesByIngredientsAction']),
+    init() {
+      this.getRecipesByIngredientsAction();
+    },
+  },
   components: {
     Header,
     RecipeCard,
   },
-  data() {
-    return {
-      recipes: [
-        {
-          title: 'Teste1',
-          ingredients: ['teste1', 'teste2'],
-          photo: null,
-        },
-        {
-          title: 'Teste2',
-          ingredients: ['teste1', 'teste2'],
-          photo: null,
-        },
-        {
-          title: 'Teste3',
-          ingredients: ['teste1', 'teste2'],
-          photo: null,
-        },
-      ],
-    };
+  mounted() {
+    this.init();
   },
 };
 </script>
