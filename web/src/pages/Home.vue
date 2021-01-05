@@ -15,6 +15,7 @@
         :title="recipe.title"
         :ingredients="recipe.ingredients"
         :photo="recipe.photo"
+        :link="recipe.link"
       />
     </section>
   </main>

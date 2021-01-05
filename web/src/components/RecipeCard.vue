@@ -1,18 +1,20 @@
 <template>
-  <article class="recipe">
-    <img v-if="photo" class="photo-recipe" :src="photo" />
-    <img
-      v-if="!photo"
-      class="photo-recipe-default"
-      src="../assets/default_photo_food.png"
-    />
-    <section class="container-info">
-      <p class="title">{{ title }}</p>
-      <div class="container-ingredients">
-        <p class="item-ingredient">Ingredients: {{ allIngredients }}</p>
-      </div>
-    </section>
-  </article>
+  <a :href="link" target="_blank" class="container-recipe">
+    <article class="recipe">
+      <img v-if="photo" class="photo-recipe" :src="photo" />
+      <img
+        v-if="!photo"
+        class="photo-recipe-default"
+        src="../assets/default_photo_food.png"
+      />
+      <section class="container-info">
+        <p class="title">{{ title }}</p>
+        <div class="container-ingredients">
+          <p class="item-ingredient">Ingredients: {{ allIngredients }}</p>
+        </div>
+      </section>
+    </article>
+  </a>
 </template>
 
 <script>
@@ -21,6 +23,7 @@ export default {
   props: {
     photo: String,
     title: String,
+    link: String,
     ingredients: Array,
   },
   computed: {
@@ -32,11 +35,15 @@ export default {
 </script>
 
 <style scoped>
+.container-recipe {
+  width: 100%;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
 .recipe {
   display: flex;
-  width: 100%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  margin-bottom: 20px;
   padding: 10px;
   border-radius: 10px;
   cursor: pointer;
