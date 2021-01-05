@@ -1,17 +1,15 @@
 <template>
   <article class="recipe">
     <img v-if="photo" class="photo-recipe" :src="photo" />
+    <img
+      v-if="!photo"
+      class="photo-recipe-default"
+      src="../assets/default_photo_food.png"
+    />
     <section class="container-info">
-      <h2 class="title">{{ title }}</h2>
+      <p class="title">{{ title }}</p>
       <div class="container-ingredients">
-        <h3 class="title-ingredients">Ingredients</h3>
-        <p
-          v-for="ingredient in ingredients"
-          :key="ingredient"
-          class="item-ingredient"
-        >
-          {{ ingredient }}
-        </p>
+        <p class="item-ingredient">Ingredients: {{ allIngredients }}</p>
       </div>
     </section>
   </article>
@@ -25,14 +23,20 @@ export default {
     title: String,
     ingredients: Array,
   },
+  computed: {
+    allIngredients() {
+      return this.ingredients.join(', ');
+    },
+  },
 };
 </script>
 
 <style scoped>
 .recipe {
   display: flex;
+  width: 100%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   padding: 10px;
   border-radius: 10px;
   cursor: pointer;
@@ -45,6 +49,16 @@ export default {
   margin-right: 15px;
 }
 
+.photo-recipe-default {
+  width: 100px;
+  height: 100px;
+  padding: 30px;
+  border-radius: 10px;
+  margin-right: 15px;
+
+  background: rgba(200, 200, 200, 0.3);
+}
+
 .container-info {
   display: flex;
   flex: 1;
@@ -53,13 +67,14 @@ export default {
 }
 
 .title {
-  font-weight: bold;
+  font-size: 1.2em;
+  font-weight: 400;
 }
 
 .container-ingredients {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  padding: 5px 0;
+  text-align: left;
 }
 
 .title-ingredients {

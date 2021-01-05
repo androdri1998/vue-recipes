@@ -1,14 +1,13 @@
 /* eslint-disable import/prefer-default-export */
 import { get } from './httpFunctions';
 
-export const getRecipesByIngredients = async ({ ingredients = [] }) => {
-  const ingredientsToRequest = ingredients.join(',');
+export const getRecipesBySearch = async ({ search }) => {
   const response = await get({
-    url: '/',
+    url: '/recipes',
     params: {
-      i: ingredientsToRequest,
+      search,
     },
   });
 
-  return response.data.results;
+  return response.data.recipes;
 };

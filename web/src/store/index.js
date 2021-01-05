@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import { getRecipesByIngredients } from '../functions/recipesFunctions';
+import { getRecipesBySearch } from '../functions/recipesFunctions';
 
 Vue.use(Vuex);
 
@@ -11,6 +11,7 @@ const initialState = {
 
 const getters = {
   recipes: state => state.recipes,
+  amountRecipes: state => state.recipes.length,
 };
 
 const mutations = {
@@ -20,9 +21,11 @@ const mutations = {
 };
 
 const actions = {
-  async getRecipesByIngredientsAction({ commit }) {
-    const recipes = await getRecipesByIngredients({
-      ingredients: ['onions', 'garlic'],
+  async getRecipesBySearchAction({ commit }, payload = {}) {
+    const searchToRequest = payload.search ? payload.search : 'omelete';
+
+    const recipes = await getRecipesBySearch({
+      search: searchToRequest,
     });
 
     return commit('setRecipes', recipes);
